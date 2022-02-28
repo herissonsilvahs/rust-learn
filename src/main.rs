@@ -2,9 +2,21 @@ use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
 
-fn main() {
-    println!("{1} loves {0}, but {0} don't love {1}!", "Amanda", "Bob");
+enum Fiat {
+    Dollar,
+    Real,
+    Pounds,
+}
 
+fn fiat_symbol(fiat: Fiat) -> String {
+    match fiat {
+        Fiat::Dollar => String::from("$"),
+        Fiat::Real => String::from("R$"),
+        Fiat::Pounds => String::from("£")
+    }
+}
+
+fn guess_game() {
     let secret_number = rand::thread_rng().gen_range(1..51);
     // println!("The secret number is: {}", secret_number);
 
@@ -37,18 +49,17 @@ fn main() {
             },
         }
     }
+}
 
-
+fn main() {
+    // println!("{1} loves {0}, but {0} don't love {1}!", "Amanda", "Bob");
     // let tup: (i32, f64) = (300, 10.5);
-
     // let (x, y) = tup;
-
     // println!("inteiro {}, flutuante {}.", { x }, { y });
-
     // let result: i32 = sum(2, 5);
-
     // println!("Result of sum: {}", result);
 
+    println!("Dolar: {}\nReal: {}\nLibra: {}", fiat_symbol(Fiat::Dollar), fiat_symbol(Fiat::Real), fiat_symbol(Fiat::Pounds))
 }
 
 // fn sum(num1: i32, num2: i32) -> i32 {
